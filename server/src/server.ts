@@ -14,7 +14,7 @@ import resolvers from './schema/resolvers.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3333;
+const PORT = Number(process.env.PORT) || 3333;
 
 const server = new ApolloServer({
   typeDefs,
@@ -37,6 +37,7 @@ connection.once('open', async () => {
   );
 
   if (process.env.PORT) {
+
     const __dirname = path.dirname(new URL(import.meta.url).pathname);
     // Share all files in the client/dist folder with the client-side
     app.use(express.static(path.join(__dirname, '../../client/dist')));
